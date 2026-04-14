@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BARIAlink - 10 Year Anniversary</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap"
+      rel="stylesheet"
+    />
+<style>
+  :root {
+  --bg-dark: #140f49;
+  --text-white: #ffffff;
+  --accent-orange: #ff7a00;
+  --accent-blue: #4da9ff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  line-height: 1.6;
+}
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* Keeps the decor from causing scrollbars */
+  background-color: var(--bg-dark);
+  padding-bottom: 100px; /* Space for the white bar */
+}
+
+/* --- Decorative Corner Lines --- */
+.decor-line {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  border: 12px solid #b829cc; /* Purple color from the image */
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Bottom Left Corner Chevron */
+.decor-left {
+  bottom: 5%;
+  left: -150px;
+  transform: rotate(45deg);
+  border-bottom: none;
+  border-left: none;
+  border-radius: 30px; /* Softens the point of the chevron */
+}
+
+/* Mid Right Corner Chevron */
+.decor-right {
+  top: 40%;
+  right: -250px;
+  transform: translateY(-50%) rotate(225deg);
+  width: 350px;
+  height: 350px;
+  border-bottom: none;
+  border-left: none;
+  border-radius: 30px;
+}
+
+/* Base styling for both logos */
+.logo-box {
+  position: absolute;
+  top: 40px; /* Distance from the top */
+}
+
+/* Specific corner placement */
+.logo-left {
+  left: 40px;
+}
+
+.logo-right {
+  right: 40px;
+}
+
+.logo {
+  max-width: 140px; /* Adjusted slightly for corner fit */
+  height: auto;
+}
+
+/* Mobile Fix: Stack them normally if the screen gets too thin */
+@media (max-width: 768px) {
+  .logo-box {
+    position: static;
+    margin-bottom: 20px;
+  }
+  .hero {
+    padding-top: 60px;
+  }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.highlight-orange {
+  color: var(--accent-orange);
+}
+.highlight-blue {
+  color: var(--accent-blue);
+}
+
+.event-date {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.btn-registration {
+  display: inline-block;
+  background-color: var(--accent-orange);
+  color: white;
+  text-decoration: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-weight: 700;
+  transition: transform 0.2s;
+  margin-bottom: 50px;
+}
+
+.btn-registration:hover {
+  transform: scale(1.05);
+}
+
+.countdown-card {
+  position: relative;
+  display: inline-block;
+  padding: 50px 60px 20px 60px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 240' preserveAspectRatio='none'%3E%3Cpath d='M25,0 L575,0 a 25,25 0 0 1 25,25 L600,215 a 25,25 0 0 1 -25,25 L285,240 a 25,25 0 0 1 -25,-25 a 25,25 0 0 0 -25,-25 L25,190 a 25,25 0 0 1 -25,-25 L0,25 a 25,25 0 0 1 25,-25' fill='white'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  min-width: 720px;
+}
+
+.label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #666;
+  margin-top: 15px;
+  display: block;
+}
+
+/* Center the inner wrapper inside the large white card */
+.countdown-content {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.countdown-card {
+  position: relative;
+  display: inline-block;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+  padding: 50px 60px 20px 60px;
+  min-width: 720px;
+}
+
+.countdown-box {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-bottom: 25px;
+}
+
+.footer-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 15px; /* Pushes text into the deeper part of the notch */
+}
+
+.countdown-footer {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #444;
+  text-align: right;
+  white-space: nowrap;
+  /* No padding-right ensures it hits the vertical alignment of 'Seconds' */
+  padding-right: 0;
+}
+
+.number {
+  font-size: 5.5rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #0f0a3d;
+  display: block;
+  margin: 0;
+
+  /* CRITICAL: This keeps numbers from moving */
+  font-variant-numeric: tabular-nums;
+  -moz-font-feature-settings: "tnum";
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+
+  /* Optional: Ensure a consistent minimum width for each number block */
+  min-width: 1.2em;
+  text-align: center;
+}
+
+.time-unit {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  /* This ensures the entire unit (number + label) stays centered in its slot */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Maintain the "Until the start" alignment we perfected */
+.inner-width-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  min-width: 600px; /* Keep this wide enough so digits don't crowd */
+  margin: 0 auto;
+}
+
+.white-footer-block {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* Adjust height to match your visual */
+  background-color: #ffffff;
+  z-index: 1;
+}
+
+  </style>
+  
+  </head>
+  <body>
+    <section class="hero">
+
+      <div class="decor-line decor-left"></div>
+      <div class="decor-line decor-right"></div>
+
+      <div class="logo-box logo-left">
+        <img src="https://www.barialink.com/files/19522/BL_10_years_logo_blauw_tekst_2.jpg?lmsauth=ccd5ff70bdbae015755834c8cd2b51740276da8d" alt="BARIAlink 10 Years" class="logo" />
+    </div>
+
+    <div class="logo-box logo-right">
+        <img src="https://www.barialink.com/files/19522/NEW_IFSO_LOGO_DESIGN_(9)2(2).png?lmsauth=539f30c448395844987afcdfd043d0f2804b55bc" alt="IFSO Logo" class="logo" />
+    </div>
+      <div class="container">
+
+
+        <div class="content">
+          <p class="subtitle">Join us to celebrate</p>
+          <h1>
+            <span class="highlight-orange">10 years</span> of linking
+            international experts <br />
+            <span class="highlight-blue">on Metabolic Bariatric Surgery</span>
+          </h1>
+          <p class="event-date">Friday 2nd October 2026</p>
+
+          <a href="#" class="btn-registration">Registration &rarr;</a>
+        </div>
+
+        <div class="countdown-card">
+          <div class="countdown-content">
+              <div class="inner-width-wrapper">
+                  <div class="countdown-box">
+                      <div class="time-unit">
+                          <span class="number" id="days">186</span>
+                          <span class="label">Days</span>
+                      </div>
+                      <div class="time-unit">
+                          <span class="number" id="hours">18</span>
+                          <span class="label">Hours</span>
+                      </div>
+                      <div class="time-unit">
+                          <span class="number" id="minutes">34</span>
+                          <span class="label">Minutes</span>
+                      </div>
+                      <div class="time-unit">
+                          <span class="number" id="seconds">19</span>
+                          <span class="label">Seconds</span>
+                      </div>
+                  </div>
+                  
+                  <div class="footer-wrapper">
+                      <p class="countdown-footer">until the start of the event on October 2nd 2026</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <div class="white-footer-block"></div>
+
+      <script>
+// Set the date we're counting down to
+const countDownDate = new Date("Oct 2, 2026 00:00:00").getTime();
+
+// Update the count down every 1 second
+const timer = setInterval(function () {
+  // Get today's date and time
+  const now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  const distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result with leading zeros
+  // We leave 'days' as is, since it is often 3 digits
+  document.getElementById("days").innerHTML = days;
+
+  // Pad hours, minutes, and seconds to always show 2 digits
+  document.getElementById("hours").innerHTML = String(hours).padStart(2, "0");
+  document.getElementById("minutes").innerHTML = String(minutes).padStart(
+    2,
+    "0"
+  );
+  document.getElementById("seconds").innerHTML = String(seconds).padStart(
+    2,
+    "0"
+  );
+
+  // If the count down is finished, display some text
+  if (distance < 0) {
+    clearInterval(timer);
+    document.querySelector(".countdown-box").innerHTML =
+      "<h3>EVENT STARTED</h3>";
+  }
+}, 1000);
+
+      </script>
+    </section>
+  </body>
+</html>
